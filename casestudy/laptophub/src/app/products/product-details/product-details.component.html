@@ -1,0 +1,60 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+<div class="container">
+    <!-- product -->
+    <div class="product-content product-wrap clearfix product-deatil">
+        <div class="row">
+            <div class="col-md-5 col-sm-12 col-xs-12 product-thumb">
+              <img [src]="product?.image" alt="Product">
+            </div>
+
+            <div class="col-md-6 col-md-offset-1 col-sm-12 col-xs-12">
+                <h2 class="name">
+                    {{product?.productName}}
+                    <small>Product by <strong>LaptopHub</strong></small>
+                    <i class="fa fa-star fa-2x text-primary"></i>
+                    <i class="fa fa-star fa-2x text-primary"></i>
+                    <i class="fa fa-star fa-2x text-primary"></i>
+                    <i class="fa fa-star fa-2x text-primary"></i>
+                    <i class="fa fa-star fa-2x text-muted"></i>
+                    <span class="fa fa-2x"><h5>(109) Votes</h5></span>
+                    <a>109 customer reviews</a>
+                </h2>
+                <hr />
+                <h3 class="price-container">
+                    {{ product?.price | currency:'INR'}}
+                    <small>*includes tax</small>
+                </h3>
+                <div class="certified">
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0);">Delivery time<span>7 Working Days</span></a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">Certified<span>Quality Assured</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <hr />
+                <div class="description description-tabs">
+                    <div id="myTabContent" class="tab-content">
+                            <br />
+                            <strong>Product Description</strong>
+                            <p>
+                                Integer egestas, orci id condimentum eleifend, nibh nisi pulvinar eros, vitae ornare massa neque ut orci. Nam aliquet lectus sed odio eleifend, at iaculis dolor egestas. Nunc elementum pellentesque augue
+                                sodales porta. Etiam aliquet rutrum turpis, feugiat sodales ipsum consectetur nec.
+                            </p>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <button mat-raised-button color="primary" (click)="addToCart()"><mat-icon >add_shopping_cart</mat-icon>Add to cart</button>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <!-- end product -->
+</div>
+
+

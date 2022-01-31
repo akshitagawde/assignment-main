@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+<mat-toolbar-row>
+  <img src="" style="max-height: 50px;"><mat-icon style="padding-left: 40px;" >laptop_chromebook</mat-icon>
+  <h1 style="padding: 35px;">Laptophub</h1>
+  <span class="example-spacer"></span>
+  <div><form class="example-form">
+    <mat-form-field class="example-full-width">
+    <span matPrefix> </span>
+    <input  style="color: whitesmoke;" type="tel" matInput  name= "search" [(ngModel)]= "search">
+    <button matSuffix mat-button><mat-icon >search</mat-icon></button>
+    </mat-form-field>
+    <br/>
+    {{search}}
+    </form>
+
+    </div>
+  <div>
+<mat-toolbar color="primary">
+<mat-toolbar-row >
+    <a mat-button routerLink="/Home">HOME</a>
+    <a mat-button routerLink="/aboutus">ABOUT US</a>
+    <a mat-button routerLink="/contactus">CONTACT US</a>
+    <a mat-button routerLink="">LOGIN</a>
+    <a mat-button routerLink="/Cart">
+      <mat-icon>shopping_cart</mat-icon> </a>
+</mat-toolbar-row>
+</mat-toolbar>
+
