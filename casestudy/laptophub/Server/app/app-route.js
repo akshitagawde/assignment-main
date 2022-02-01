@@ -42,7 +42,7 @@ const CustomerController = require('./customer-controller');
 //----------------------------------------------------------------------------------------------------
 //Orders
 const OrderController = require('./order-controller');
-  ROUTE.get('/Orders',OrderController.findAll);
+  ROUTE.get('/Orders/:customerId',OrderController.findAll);
   ROUTE.get('/Orders/:id',OrderController.findByPk);
   ROUTE.post('/Orders/add/',OrderController.create);
   ROUTE.put('/Orders/update/:id',OrderController.update);

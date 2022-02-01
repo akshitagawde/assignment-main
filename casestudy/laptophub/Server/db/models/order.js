@@ -14,11 +14,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Order.init({
-    
-    OrderDate: DataTypes.DATE,
-    productName: DataTypes.STRING,
-    CustomerId: DataTypes.NUMERIC,
-    Location: DataTypes.STRING
+    Product_Id: DataTypes.INTEGER,
+    Customer_Id: DataTypes.INTEGER,
+    Order_date: DataTypes.DATE,
+    Order_Address: DataTypes.STRING,
+    Total_Amount: DataTypes.NUMERIC
   }, {
     sequelize,
     modelName: 'Order',

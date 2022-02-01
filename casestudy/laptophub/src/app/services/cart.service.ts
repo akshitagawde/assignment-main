@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { ICart } from '../cart/ICart';
 import { IOrder } from '../order/order';
 
@@ -16,6 +16,7 @@ export class Cartservice {
  private Cart_update = "http://localhost:3000/app/cart/update/";
  private Cart_delete = "http://localhost:3000/app/cart/delete/";
  private order_add = "http://localhost:3000/app/Orders/add";
+ private orderFindAll = "http://localhost:3000/app/Orders";
 
  httpOptions = {
    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -36,6 +37,10 @@ createOrder(order: IOrder): Observable<IOrder> {
 
 find(id:number): Observable<ICart> {
   return this.httpclient.get<ICart>(this.Cart_find+"/"+id);
+}
+
+findAll(customerId:number): Observable<any> {
+  return this.httpclient.get<any>(this.orderFindAll+"/"+customerId);
 }
 
 findCartByProduct(id:number): Observable<ICart[]> {

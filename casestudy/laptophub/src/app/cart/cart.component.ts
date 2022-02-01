@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { IOrder } from '../order/order';
 import { Cartservice } from '../services/cart.service';
 import { ProductService } from '../services/product.service';
@@ -73,17 +73,20 @@ export class CartComponent implements OnInit {
           id:0,
           productId:cart.productId,
           customerId:1,
-          // Order_date:new Date(),
+          orderDate:new Date(),
           orderAddress:"123 navi mumbai",
-          totalAmount:this.displayTotalAmount(),
-          status:"active"
+          totalAmount: cart.productPrice * cart.cart.Quantity,
+          status:"active",
+          cartId:cart.cart.id
         })
       })
 
       this.orders.forEach(order=> {
-        this.cartservice.createOrder(order).subscribe(order=> {
+        this.cartservice.createOrder(order).subscribe(data=> {
+          this.removeFromCart(order.cartId);
         });
       })
+
       this.route.navigate(['/order']);
     }
 

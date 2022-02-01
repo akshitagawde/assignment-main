@@ -4,7 +4,8 @@ const db = require('../db/models');
            //select * from users => findAll
 
            exports.findAll=(req,res)=>{
-            Order.findAll()
+            const customerId = req.params.customerId;
+            Order.findAll({ where: { Customer_Id: customerId }})
            .then(data=>res.json(data))
            .catch(err=>{
            res.status(500)
@@ -28,31 +29,57 @@ const db = require('../db/models');
 
        //insert into users (firstName,lastName,createdAt,updateAt) values(?,?,?,?) =>create(user)
 
-        exports.create=(req,res)=>{
+
+       exports.create=(req,res)=>{
+
         if(!req.body.productId){
+
         res.status(400).send({
+
         message: "Content can not be empty!"
+
         });
+
           return;
+
         }
 
+
+
        const newOrder ={
-        Product_Id : req.body. Product_Id,
+
+        Product_Id : req.body.productId,
+
         Customer_Id : req.body.customerId,
 
-        Order_Address : req.body.Order_Address,
-        Total_Amount : req.body. Total_Amount,
+        Order_date : req.body.orderDate,
+
+        Order_Address : req.body.orderAddress,
+
+        Total_Amount : req.body.totalAmount,
+
         Status:req.body.status,
+
         createdAt:new Date(),
+
         updatedAt:new Date()
+
       }
 
+
+
       Order.create(newOrder)
+
      .then(data=>res.json(data))
+
      .catch(err=>{
+
        res.status(500)
+
        .send({message:err.message || 'Something went wrong'});
+
       });
+
      };
 
      //update users set firstName=?, lastName=?,createdAt=?,updateAt=?
