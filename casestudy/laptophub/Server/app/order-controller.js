@@ -29,7 +29,7 @@ const db = require('../db/models');
        //insert into users (firstName,lastName,createdAt,updateAt) values(?,?,?,?) =>create(user)
 
         exports.create=(req,res)=>{
-        if(!req.body.Product_Id){
+        if(!req.body.productId){
         res.status(400).send({
         message: "Content can not be empty!"
         });
@@ -37,12 +37,12 @@ const db = require('../db/models');
         }
 
        const newOrder ={
-        Product_Id : req.body.Product_Id,
-        Customer_Id : req.body.Customer_Id,
-        Order_date : req.body.Order_date,
+        Product_Id : req.body. Product_Id,
+        Customer_Id : req.body.customerId,
+
         Order_Address : req.body.Order_Address,
-        Total_Amount : req.body.Total_Amount,
-        Status:req.body.Status,
+        Total_Amount : req.body. Total_Amount,
+        Status:req.body.status,
         createdAt:new Date(),
         updatedAt:new Date()
       }

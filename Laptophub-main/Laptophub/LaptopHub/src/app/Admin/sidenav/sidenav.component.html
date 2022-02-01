@@ -1,0 +1,25 @@
+<mat-sidenav-container class = "tp-container" color="primary" >
+  <mat-sidenav mode = "side" opened>
+     <section class = "tp-section">
+        <span></span>
+     </section>
+     <section class = "tp-section">
+      <span><a routerLink="/addcategory">Add-Category</a></span>
+   </section>
+     <section class = "tp-section">
+      <span><a routerLink="/addproduct">Add-product</a></span>
+     </section>
+     <section class = "tp-section">
+      <span><a routerLink="/productlist">Product-list</a></span>
+     </section>
+     <section class = "tp-section">
+      <span><a routerLink="/categorylist">Category-list</a></span>
+     </section>
+     <section class = "tp-section">
+      <span><a routerLink="/categorylist">Order-List</a></span>
+     </section>
+  </mat-sidenav>
+  <mat-sidenav-content>
+ <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

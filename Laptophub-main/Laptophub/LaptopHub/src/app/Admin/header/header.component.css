@@ -1,0 +1,33 @@
+mat-toolbar
+{
+  background-color:#00308F;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+ul li{
+  padding:10px;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+
+ul {
+  display: flex;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+
+button
+{
+  background-color:#00308F;
+  border:1px solid #00308F;
+  color: white;
+  border-radius:10px;
+}

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ICart } from '../cart/ICart';
+import { IOrder } from '../order/order';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class Cartservice {
  private Cart_add = "http://localhost:3000/app/cart/add";
  private Cart_update = "http://localhost:3000/app/cart/update/";
  private Cart_delete = "http://localhost:3000/app/cart/delete/";
+ private order_add = "http://localhost:3000/app/Orders/add";
 
  httpOptions = {
    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -26,6 +28,10 @@ export class Cartservice {
 
  create(cart: ICart): Observable<ICart> {
   return this.httpclient.post<ICart>(this.Cart_add, JSON.stringify(cart), this.httpOptions);
+}
+
+createOrder(order: IOrder): Observable<IOrder> {
+  return this.httpclient.post<IOrder>(this.order_add, JSON.stringify(order), this.httpOptions);
 }
 
 find(id:number): Observable<ICart> {

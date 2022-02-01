@@ -1,0 +1,36 @@
+<div class="login1">
+<div class="container" id="user">
+  <h1 class="text-center">Admin Login</h1>
+  <hr/>
+
+  <form [formGroup]="form" (ngSubmit)="checkLogin()">
+
+      <div class="form-group">
+          <label for="Email">Email:</label>
+          <input
+              formControlName="Email"
+              id="Email"
+              type="email"
+              class="form-control">
+          <div *ngIf="f['Email'].touched && f['Email'].invalid" class="alert alert-danger">
+              <div *ngIf="f['Email'].errors && f['Email'].errors['required']">UserName is required.</div>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label for="Password">Password:</label>
+        <input
+            formControlName="Password"
+            id="Password"
+            type="Password"
+            class="form-control">
+        <div *ngIf="f['Password'].touched && f['Password'].invalid" class="alert alert-danger">
+            <div *ngIf="f['Password'].errors && f['Password'].errors['required']">Password is required.</div>
+        </div>
+    </div>
+    <br>
+      <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Login</button>
+      &nbsp; <button class="btn btn-primary" type="reset" >Cancel</button>
+  </form>
+</div>
+</div>

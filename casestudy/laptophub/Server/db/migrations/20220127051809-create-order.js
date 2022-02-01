@@ -14,9 +14,9 @@ module.exports = {
       Customer_Id: {
         type: Sequelize.INTEGER
       },
-      Order_date: {
-        type: Sequelize.DATE
-      },
+      // Order_date: {
+      //   type: Sequelize.DATE
+      // },
       Order_Address: {
         type: Sequelize.STRING
       },

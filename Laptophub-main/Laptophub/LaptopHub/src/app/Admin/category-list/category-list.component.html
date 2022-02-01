@@ -1,0 +1,29 @@
+<div class="categorylist"></div>
+<div class="container" id="categorylist">
+  <br/>
+   <hr/>
+    <h1 class="text-center">Category</h1>
+    <hr/>
+    <a routerLink="/addcategory" class="btn btn-success">Create New Category</a>
+     <br/>
+     <br/>
+    <table class="table table-bordered" >
+      <thead>
+      <tr>
+
+        <th>CategoryName</th>
+        <th width="220px">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories">
+
+        <td>{{ category.categoryName }}</td>
+        <td>
+          <a  [routerLink]="['/productCategories/',category.id,'UpdateDetails']" class="btn btn-primary"><i class="material-icons">edit</i></a>&nbsp;
+          <button type="button" (click)="deleteUser(category.id)" class="btn btn-danger"><i class="material-icons">delete</i></button>
+        </td>
+      </tr>
+    </tbody>
+    </table>
+ </div>

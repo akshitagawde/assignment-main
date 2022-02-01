@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { IOrder } from '../order/order';
 import { Cartservice } from '../services/cart.service';
 import { ProductService } from '../services/product.service';
 import { ICart } from './ICart';
@@ -27,12 +29,15 @@ interface IProductCart {
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+  orders:IOrder[]=[];
   carts: ICart[] = [];
   products:IProduct[]=[];
   cartProducts : IProductCart[]=[];
   totalAmount:number=0;
   total:number[]=[];
-  constructor(private cartservice: Cartservice,private productService: ProductService,private _snackBar: MatSnackBar) {}
+  constructor(private cartservice: Cartservice
+    ,private productService: ProductService,
+    private _snackBar: MatSnackBar,private route:Router) {}
 
   ngOnInit(): void {
   this.loadCartData();
@@ -63,6 +68,23 @@ export class CartComponent implements OnInit {
   }
 
     saveOrder(){
+      this.cartProducts.forEach(cart=> {
+        this.orders.push({
+          id:0,
+          productId:cart.productId,
+          customerId:1,
+          // Order_date:new Date(),
+          orderAddress:"123 navi mumbai",
+          totalAmount:this.displayTotalAmount(),
+          status:"active"
+        })
+      })
+
+      this.orders.forEach(order=> {
+        this.cartservice.createOrder(order).subscribe(order=> {
+        });
+      })
+      this.route.navigate(['/order']);
     }
 
     removeFromCart(id:number){

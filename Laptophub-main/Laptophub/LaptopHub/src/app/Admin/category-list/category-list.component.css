@@ -1,0 +1,12 @@
+#categorylist
+{
+  border: 3px solid gainsboro;
+  border-radius:15px;
+  padding:25px;
+  width:100%;
+  background-color: gainsboro;
+}
+.categorylist
+{
+  padding-top:85px;
+}

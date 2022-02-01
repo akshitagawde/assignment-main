@@ -1,0 +1,47 @@
+<div class="AdminUser"></div>
+<div class="container" id="user">
+  <h1 class="text-center">Add Admin User</h1>
+  <hr/>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <div class="form-group">
+          <label for="FullName">FullName:</label>
+          <input
+              formControlName="FullName"
+              id="FullName"
+              type="text"
+              class="form-control">
+          <div *ngIf="f['FullName'].touched && f['FullName'].invalid" class="alert alert-danger">
+              <div *ngIf="f['FullName'].errors && f['FullName'].errors['required']">FullName is required.</div>
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="Email">Email:</label>
+        <input
+            formControlName="Email"
+            id="Email"
+            type="email"
+            class="form-control">
+        <div *ngIf="f['Email'].touched && f['Email'].invalid" class="alert alert-danger">
+            <div *ngIf="f['Email'].errors && f['Email'].errors['required']">Email is required.</div>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="Password">Password:</label>
+      <input
+          formControlName="Password"
+          id="Password"
+          type="Password"
+          class="form-control"
+          minlength="8"
+          >
+      <div *ngIf="f['Password'].touched && f['Password'].invalid" class="alert alert-danger">
+          <div *ngIf="f['Password'].errors && f['Password'].errors['required']">Password is required.</div>
+      </div>
+  </div>
+    <br>
+      <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+      &nbsp; <button type="reset" class="btn btn-danger">Cancel</button>
+  </form>
+</div>

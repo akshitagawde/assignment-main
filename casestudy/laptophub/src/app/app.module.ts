@@ -25,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ContactusComponent,
     ProductsComponent,
     ProductDetailsComponent,
+    OrderComponent,
   ],
   imports: [
     BrowserModule,
