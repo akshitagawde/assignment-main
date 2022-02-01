@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     Description: DataTypes.STRING,
     image: DataTypes.STRING,
     price: DataTypes.DOUBLE,
-    Category: DataTypes.STRING
+    Category: DataTypes.STRING,
+    InCart:DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'Product',

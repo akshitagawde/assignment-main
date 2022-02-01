@@ -54,6 +54,7 @@ const OrderController = require('./order-controller');
   const CartController = require('./cart-controller');
   ROUTE.get('/carts',CartController.findAll);
   ROUTE.get('/cart/:id',CartController.findByPk);
+  ROUTE.get('/cart/product/:id',CartController.findCartByProduct);
   ROUTE.post('/cart/add/',CartController.create);
   ROUTE.put('/cart/update/:id',CartController.update);
   ROUTE.delete('/cart/delete/:id',CartController.delete);

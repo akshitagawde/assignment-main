@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Cartservice } from '../services/cart.service';
-import { ICart } from './Icart';
+import { ProductService } from '../services/product.service';
+import { ICart } from './ICart';
 
 interface IProduct{
   productId:number,
@@ -9,6 +10,15 @@ interface IProduct{
   productDescription:string,
   productPrice:number,
   imagePath:string
+}
+
+interface IProductCart {
+  productId:number,
+  productName:string,
+  productDescription:string,
+  productPrice:number,
+  imagePath:string,
+  cart:ICart
 }
 
 @Component({
@@ -19,21 +29,55 @@ interface IProduct{
 export class CartComponent implements OnInit {
   carts: ICart[] = [];
   products:IProduct[]=[];
-  constructor(private cartservice: Cartservice,private _snackBar: MatSnackBar) {}
+  cartProducts : IProductCart[]=[];
+  totalAmount:number=0;
+  total:number[]=[];
+  constructor(private cartservice: Cartservice,private productService: ProductService,private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
-    this.products = [
-      {productId:1,productName:'dell',productDescription:'Dell product1',productPrice:1234 ,imagePath:'img1'},
-      {productId:2,productName:'dell2',productDescription:'Dell product2',productPrice:234 ,imagePath:'img2'}
-  ]
+  this.loadCartData();
+  console.log(this.total);
   }
+
+  loadCartData(){
+    this.cartservice.getCarts().subscribe(result=>{
+      this.carts=result;
+      this.carts.forEach(cart => {
+        this.productService.find(cart.ProductId).subscribe(product => {
+          this.cartProducts.push({
+            productId:product.id,
+            productName:product.productName,
+            productPrice:product.price,
+            productDescription:product.Description,
+            imagePath:product.image,
+            cart:cart
+          })
+        })
+      });
+     });
+  }
+
   changeQuantity(event: Event) {
      (event.target as HTMLInputElement).value;
     console.log( (event.target as HTMLInputElement).value);
   }
+
     saveOrder(){
+    }
 
-      }
+    removeFromCart(id:number){
+     this.cartservice.delete(id).subscribe(data=>{
+      this.cartProducts = this.cartProducts.filter(cart=> cart.cart.id !== id);
+      });
+    }
 
-}
+   displayTotalAmount(){
+    var total=0;
+    this.cartProducts.forEach(function(item){
+      total += item.cart.Quantity * item.productPrice;
+    })
+    return total;
+    }
+
+  }
 

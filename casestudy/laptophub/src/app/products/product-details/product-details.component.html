@@ -39,10 +39,7 @@
                     <div id="myTabContent" class="tab-content">
                             <br />
                             <strong>Product Description</strong>
-                            <p>
-                                Integer egestas, orci id condimentum eleifend, nibh nisi pulvinar eros, vitae ornare massa neque ut orci. Nam aliquet lectus sed odio eleifend, at iaculis dolor egestas. Nunc elementum pellentesque augue
-                                sodales porta. Etiam aliquet rutrum turpis, feugiat sodales ipsum consectetur nec.
-                            </p>
+                            <p>{{ product ? product.Description.split('|')[1] : 'No Description is Available For this Product' }}</p>
                     </div>
                 </div>
                 <hr />

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Route, Router } from '@angular/router';
-import { ICart } from '../cart/Icart';
+import { ICart } from '../cart/ICart';
 import { Cartservice } from '../services/cart.service';
 import { ProductService } from '../services/product.service';
 import { IProduct } from './IProduct';
@@ -14,6 +14,7 @@ import { IProduct } from './IProduct';
 export class ProductsComponent implements OnInit {
   products: IProduct[] = [];
   cart:ICart | undefined;
+  searchProductText: string = '';
 
   constructor(
     private productService: ProductService,
@@ -23,12 +24,20 @@ export class ProductsComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    this.getProducts();
+    this.productService.searchProduct.subscribe(searchText => {
+      this.searchProductText = searchText.toLocaleLowerCase();
+      this.getProducts(this.searchProductText);
+    });
+
   }
-  getProducts(): void {
+  getProducts(searchText:string): void {
     this.productService.getProducts().subscribe(
       (products: IProduct[]) => {
-        this.products = products;
+        if(searchText.length>0) {
+          this.products = products.filter(p=>p.productName.toLocaleLowerCase().includes(searchText));
+        } else {
+          this.products = products;
+        }
       },
       (error) => {
         this._snackBar.open('Something went wrong', 'Please Try again', {
@@ -38,25 +47,42 @@ export class ProductsComponent implements OnInit {
     );
   }
 
+
   addToCart(product:IProduct){
-    this.cart = {
-      ProductId:product.id,
-      productName:product.productName,
-      Password:'NA',
-      Quantity: 1,
-      TotalAmount:product.price
+    if(product) {
+      this.cartService.findCartByProduct(product.id).subscribe((cart:ICart[])=> {
+        if(cart.length > 0) {
+          this.route.navigate(['/Cart']);
+        } else {
+          this.cart = {
+            id:0,
+            ProductId:product.id,
+            productName:product.productName,
+            Password:'NA',
+            Quantity: 1,
+            TotalAmount:product.price
+          }
+
+          this.cartService.create(this.cart).subscribe((cart:ICart)=> {
+            this.route.navigate(['/Cart']);
+          },
+          (error)=>{
+            this._snackBar.open('Something went wrong', 'Please Try again', {
+              duration: 3000
+            });
+          });
+        }
+       },
+       (error)=>{
+         this._snackBar.open('Something went wrong', 'Please Try again', {
+           duration: 3000
+         });
+       });
+
+
     }
 
-    this.cartService.create(this.cart).subscribe((cart:ICart)=> {
-      this.route.navigate(['/Cart']);
-    },
-    (error)=>{
-      this._snackBar.open('Something went wrong', 'Please Try again', {
-        duration: 3000
-      });
-    });
-
   }
-
-
 }
+
+

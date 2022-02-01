@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ICart } from 'src/app/cart/Icart';
+import { ICart } from 'src/app/cart/ICart';
 import { Cartservice } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 import { IProduct } from '../IProduct';
@@ -40,25 +40,30 @@ export class ProductDetailsComponent implements OnInit {
   addToCart(){
     if(this.product) {
 
-      // this.cartService.find(this.cart).subscribe((cart:ICart)=> {
-      //   this.router.navigate(['/Cart']);
-      // },
-      // (error)=>{
-      //   this._snackBar.open('Something went wrong', 'Please Try again', {
-      //     duration: 3000
-      //   });
-      // });
-
-      this.cart = {
-        ProductId:this.product.id,
-        productName:this.product.productName,
-        Password:'NA',
-        Quantity: 1,
-        TotalAmount:this.product.price
-      }
-
-      this.cartService.create(this.cart).subscribe((cart:ICart)=> {
+      this.cartService.findCartByProduct(this.product.id).subscribe((cart:ICart[])=> {
+       if(cart.length > 0) {
         this.router.navigate(['/Cart']);
+       } else {
+         if(this.product) {
+          this.cart = {
+            id:0,
+            ProductId:this.product.id,
+            productName:this.product.productName,
+            Password:'NA',
+            Quantity: 1,
+            TotalAmount:this.product.price
+          }
+
+          this.cartService.create(this.cart).subscribe((cart:ICart)=> {
+            this.router.navigate(['/Cart']);
+          },
+          (error)=>{
+            this._snackBar.open('Something went wrong', 'Please Try again', {
+              duration: 3000
+            });
+          });
+         }
+       }
       },
       (error)=>{
         this._snackBar.open('Something went wrong', 'Please Try again', {
@@ -66,7 +71,5 @@ export class ProductDetailsComponent implements OnInit {
         });
       });
     }
-
-
   }
 }

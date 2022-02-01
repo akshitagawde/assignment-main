@@ -9,9 +9,11 @@
                   <div class="product-category"><a href="#" data-abc="true">{{ product.Category }}</a></div>
                   <h3 class="product-title"><a href="#" data-abc="true">{{ product.productName}}</a></h3>
                   <h4 class="product-price">{{ product.price | currency: 'INR' }}</h4>
+
               </div>
               <div class="product-button-group">
-                <button mat-raised-button color="primary" style="width: 50%;" (click)="addToCart(product)"><mat-icon>add_shopping_cart</mat-icon> Add to cart</button>
+                <button mat-raised-button color="primary" style="width: 50%;" (click)="addToCart(product)"><mat-icon>add_shopping_cart</mat-icon>
+                  Add to cart</button>
                 <button mat-raised-button color="primary" style="width: 50%;" [routerLink]="['/productdetails',product.id]"><mat-icon>info</mat-icon> Details</button>
               </div>
           </div>

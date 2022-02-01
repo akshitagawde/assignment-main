@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ICart } from '../cart/Icart';
+import { ICart } from '../cart/ICart';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,7 @@ export class Cartservice {
  //http://localhost:3000/Products/
  private Cart_urls = "http://localhost:3000/app/carts";
  private Cart_find = "http://localhost:3000/app/carts";
+ private Cart_findByProduct = "http://localhost:3000/app/cart/product";
  private Cart_add = "http://localhost:3000/app/cart/add";
  private Cart_update = "http://localhost:3000/app/cart/update/";
  private Cart_delete = "http://localhost:3000/app/cart/delete/";
@@ -29,6 +30,10 @@ export class Cartservice {
 
 find(id:number): Observable<ICart> {
   return this.httpclient.get<ICart>(this.Cart_find+"/"+id);
+}
+
+findCartByProduct(id:number): Observable<ICart[]> {
+  return this.httpclient.get<ICart[]>(this.Cart_findByProduct+"/"+id);
 }
 
 update(id:number, Products: any): Observable<ICart> {

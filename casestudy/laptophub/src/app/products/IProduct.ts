@@ -8,4 +8,5 @@ export interface IProduct
   Category:string;
   createdAt:Date;
   updatedAt:Date;
+  InCart:boolean;
 }

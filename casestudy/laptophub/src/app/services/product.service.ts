@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { IProduct } from '../products/IProduct';
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,8 @@ export class ProductService {
  private Products_add = "http://localhost:3000/app/Products/add";
  private Products_update = "http://localhost:3000/app/Products/update/";
  private Products_delete = "http://localhost:3000/app/Products/delete/";
+
+ searchProduct = new BehaviorSubject<string>('');
 
  httpOptions = {
    headers: new HttpHeaders({ 'Content-Type': 'application/json' })

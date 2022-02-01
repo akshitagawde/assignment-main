@@ -96,3 +96,14 @@ const db = require('../db/models');
       });
      });
     };
+
+    exports.findCartByProduct=(req,resp)=>{
+      const id=parseInt(req.params.id);
+      Cart.findAll({where: { ProductId: id}})
+     .then(data=>resp.json(data))
+     .catch(err=>{
+      resp.status(500)
+         .send({message:err.message||
+          `Something went wrong`})
+     });
+    };

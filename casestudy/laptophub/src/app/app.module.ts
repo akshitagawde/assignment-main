@@ -24,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ProductDetailsComponent } from './products/product-details/product-deta
     MatInputModule,
     MatSidenavModule,
     MatCardModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

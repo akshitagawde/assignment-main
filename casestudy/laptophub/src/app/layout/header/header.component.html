@@ -6,8 +6,8 @@
   <div><form class="example-form">
     <mat-form-field class="example-full-width">
     <span matPrefix> </span>
-    <input  style="color: whitesmoke;" type="tel" matInput  name= "search" [(ngModel)]= "search">
-    <button matSuffix mat-button><mat-icon >search</mat-icon></button>
+    <input  style="color: whitesmoke;" type="tel" matInput name="search" #searchtext>
+    <button matSuffix mat-button (click)="searchProduct(searchtext.value)" ><mat-icon >search</mat-icon></button>
     </mat-form-field>
     <br/>
     {{search}}
@@ -21,7 +21,7 @@
     <a mat-button routerLink="/aboutus">ABOUT US</a>
     <a mat-button routerLink="/contactus">CONTACT US</a>
     <a mat-button routerLink="">LOGIN</a>
-    <a mat-button routerLink="/Cart">
+    <a mat-button routerLink="/Cart" >
       <mat-icon>shopping_cart</mat-icon> </a>
 </mat-toolbar-row>
 </mat-toolbar>
