@@ -51,8 +51,8 @@
 								<div class="summary-item"><span class="text">Total</span><span class="price">
                   {{ displayTotalAmount() | currency:'INR'}}
                 </span></div>
-			 					<button mat-button type="button" class="btn btn-primary btn-lg btn-block" (click)="saveOrder()">
-                Place Order
+			 					<button mat-button type="button" class="btn btn-primary btn-lg btn-block" [routerLink]="['/payment']" (click)="saveOrder()" >
+                Buy Now
                   </button>
 				 			</div>
 			 			</div>

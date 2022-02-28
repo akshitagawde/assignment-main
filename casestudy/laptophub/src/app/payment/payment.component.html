@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+</head>
+<body>
+  <main class="page payment-page">
+    <section class="payment-form dark">
+      <div class="container">
+        <div class="block-heading">
+        </div>
+
+          <h3 class="title">Checkout</h3>
+          <div class="products"  *ngFor="let cartProduct of cartProducts">
+            <div class="item">
+              <span class="price"></span>
+              <p class="item-name">{{cartProduct.productName}}</p>
+              <p class="item-description">{{ cartProduct ? cartProduct.productDescription.split('|')[0] : 'No Description Available'}}</p>
+            </div>
+
+            <div class="total">Total<span class="price">{{ cartProduct.cart.Quantity * cartProduct.cart.TotalAmount  | currency:'INR'}}</span></div>
+            <div class="col d-flex justify-content-end"> <b></b> </div>
+          </div>
+          <div class="col-md-12 col-lg-6 p-6">
+             <div class="summary-item"><span class="price">Total Payable Amount</span>
+              <span class="price pr-4">
+               {{ displayTotalAmount() | currency:'INR'}}
+             </span></div>
+          </div>
+          <div class="col-md-12 col-lg-12">
+          <form [formGroup]="deliveryForm" (ngSubmit)="onSubmit()">
+          <div class="card-details">
+            <h3 class="title">Delivery  Details</h3>
+            <div class="row">
+              <div class="form-group col-sm-7">
+                <label for="card-holder">Delivery Address</label>
+                <input id="card-holder"  formControlName="address" type="text" class="form-control"
+                 placeholder="Delivery Address" aria-label="Card Holder" aria-describedby="basic-addon1"
+                 >
+              </div>
+              <div *ngIf="deliveryForm.controls['address'].invalid &&
+              (deliveryForm.controls['address'].dirty || deliveryForm.controls['address'].touched)" class="alert alert-danger">
+                <div *ngIf="deliveryForm.controls['address'].errors.required">
+                Please enter address
+              </div>
+            </div>
+              <div class="form-group col-sm-5">
+                <label for="card-holder">Pincode</label>
+                <input id="card-holder" formControlName="pincode" type="text" class="form-control"
+                 placeholder="Pincode" aria-label="Card Holder" aria-describedby="basic-addon1" >
+              </div>
+              <div *ngIf="deliveryForm.controls['pincode'].invalid &&
+              (deliveryForm.controls['pincode'].dirty || deliveryForm.controls['pincode'].touched)" class="alert alert-danger">
+                <div *ngIf="deliveryForm.controls['pincode'].errors.required">
+                Please enter pincode
+              </div>
+              <div *ngIf="deliveryForm.controls['pincode'].hasError('maxlength')">
+                Please enter 6 digit
+              </div>
+              <div *ngIf="deliveryForm.controls['pincode'].hasError('minlength')">
+                Please enter 6 digit
+              </div>
+            </div>
+              <div class="form-group col-sm-8">
+                <label for="card-number">state</label>
+                <input id="card-number" formControlName="state" type="text" class="form-control"
+                placeholder="State" aria-label="Card Holder" aria-describedby="basic-addon1"  >
+              </div>
+              <div *ngIf="deliveryForm.controls['state'].invalid &&
+              (deliveryForm.controls['state'].dirty || deliveryForm.controls['state'].touched)" class="alert alert-danger">
+                <div *ngIf="deliveryForm.controls['state'].errors.required">
+                Please enter state
+              </div>
+            </div>
+              <!-- <div class="form-group col-sm-8">
+               <label for="card-number">Payment Mode</label><br>
+                <input type="radio" id="cod" name="fav_language"  value="cod" >
+               <label for="cod">Cash On Delivery</label>
+              </div> --><div class="form-group col-sm-8">
+
+                <mat-radio-group aria-label="Select an option">
+                  <mat-radio-button value="1">Cash On Delivery</mat-radio-button>
+
+                </mat-radio-group>
+
+                </div>
+
+              <div class="form-group col-sm-12">
+                <button type="submit" class="btn btn-primary btn-block" [disabled]="!deliveryForm.valid">Confirm order</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      </div>
+    </section>
+  </main>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</html>

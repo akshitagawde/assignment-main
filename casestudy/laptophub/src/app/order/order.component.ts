@@ -63,4 +63,5 @@ export class OrderComponent implements OnInit {
     return total;
     }
 
+
 }

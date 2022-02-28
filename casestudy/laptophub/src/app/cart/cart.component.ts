@@ -81,13 +81,16 @@ export class CartComponent implements OnInit {
         })
       })
 
-      this.orders.forEach(order=> {
-        this.cartservice.createOrder(order).subscribe(data=> {
-          this.removeFromCart(order.cartId);
-        });
-      })
+      localStorage.setItem("cartProducts", JSON.stringify(this.cartProducts));
 
-      this.route.navigate(['/order']);
+
+      // this.orders.forEach(order=> {
+      //   this.cartservice.createOrder(order).subscribe(data=> {
+      //     this.removeFromCart(order.cartId);
+      //   });
+      // })
+
+      // this.route.navigate(['/order']);
     }
 
     removeFromCart(id:number){

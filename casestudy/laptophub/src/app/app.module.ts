@@ -26,6 +26,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { OrderComponent } from './order/order.component';
+import { PaymentComponent } from './payment/payment.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,7 @@ import { OrderComponent } from './order/order.component';
     ProductsComponent,
     ProductDetailsComponent,
     OrderComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +61,10 @@ import { OrderComponent } from './order/order.component';
     MatSidenavModule,
     MatCardModule,
     MatSnackBarModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    MatRadioModule,
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
